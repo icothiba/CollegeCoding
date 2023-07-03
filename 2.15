@@ -1,0 +1,28 @@
+If the input is 25.0 3.1599, then the output is 2.53 9.48 63.20
+
+#include <iostream>
+#include <iomanip>      //For setprecision
+using namespace std;
+
+int main() {
+   double milesPerGallon;
+   double dollarsPerGallon;
+   double cost20;
+   double cost75;
+   double cost500;
+   
+   // Type your declarations and any other code before your cout's here.
+   
+   cout << fixed << setprecision(2);   // All later cout's will print floating-point values to exactly 2 decimal places.
+                                       // Ex: 3.60
+   cin >> milesPerGallon;
+   cin >> dollarsPerGallon;
+   
+   cost20 = (20 / milesPerGallon) * dollarsPerGallon;
+   cost75 = (75 / milesPerGallon) * dollarsPerGallon;
+   cost500 = (500 / milesPerGallon) * dollarsPerGallon;
+   
+   cout << cost20 << " " << cost75 << " " << cost500 << endl;
+   
+   return 0;
+}
