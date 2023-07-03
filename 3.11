@@ -1,0 +1,35 @@
+If the input is 130 50 130, then the output is 80 0 80.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+   int r,g,b,small;
+
+
+   cin >> r >> g >> b;
+
+
+   if (r<g && r<b)
+
+      small = r;
+
+   else if (g<b)
+
+      small = g;
+
+   else
+
+      small = b; 
+      
+   r = r - small;
+
+   g = g - small;
+
+   b = b - small;
+
+   cout << r << " " << g << " " << b << endl; 
+
+   return 0;
+}
