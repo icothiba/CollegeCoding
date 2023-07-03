@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   int inputVal;
+   int numDollars;
+   int numQuarters;
+   int numDimes;
+   int numNickels;
+   int numPennies; 
+
+
+   
+   cin >> inputVal; 
+   
+   if (inputVal <= 0) {
+      cout << "No change" << endl;
+      return 0;
+   }
+      
+   numDollars = inputVal / 100;
+   inputVal = inputVal % 100;
+   
+   numQuarters = inputVal / 25;
+   inputVal = inputVal % 25;
+   
+   numDimes = inputVal / 10;
+   inputVal = inputVal % 10;
+   
+   numNickels = inputVal / 5;
+   numPennies = inputVal % 5;
+   
+   if (numDollars > 0) {
+      cout << numDollars;
+      if (numDollars == 1)
+         cout << " Dollar";
+   else 
+      cout << " Dollars"; 
+   cout << endl;
+   }
+   
+   if (numQuarters > 0) {
+      cout << numQuarters;
+      if (numQuarters == 1)
+         cout << " Quarter";
+   else 
+      cout << " Quarters"; 
+   cout << endl;
+   }
+   
+   if (numDimes > 0) {
+      cout << numDimes;
+      if (numDimes == 1)
+         cout << " Dime";
+   else 
+      cout << " Dimes"; 
+   cout << endl;
+   }
+
+   if (numNickels > 0) {
+      cout << numNickels;
+      if (numDollars == 1)
+         cout << " Nickel";
+   else 
+      cout << " Nickels"; 
+   cout << endl;
+   }
+      
+   if (numPennies > 0) {
+      cout << numPennies;
+      if (numPennies == 1)
+         cout << " Penny";
+   else 
+      cout << " Pennies"; 
+   cout << endl;
+   }
+   
+   
+   return 0;
+}
