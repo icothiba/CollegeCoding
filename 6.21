@@ -1,0 +1,33 @@
+If the input is:
+
+-Hello, 1 world$!
+
+the output is:
+
+Helloworld
+
+
+#include <iostream>
+using namespace std;
+
+string RemoveNonAlpha(string userString) {
+    string result = "";
+    for (char c : userString) {
+        if (isalpha(c)) {
+            result += c;
+        }
+    }
+    return result; 
+}
+
+int main() {
+string userString;
+
+    getline(cin, userString);
+
+    string result = RemoveNonAlpha(userString);
+
+    cout << result << endl;
+
+   return 0;
+}
