@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+
+int CalculateDistance(int x1, int y1, int x2, int y2) {
+   int xDistance = abs(x1 - x2);
+   int yDistance = abs(y1 - y2);
+   return xDistance + yDistance;
+}
+int PickupMinutes(int userX, int userY, int d1X, int d1Y, int d2X, int d2Y, int d3X, int d3Y) {
+int distance1 = CalculateDistance(userX, userY, d1X, d1Y);
+int distance2 = CalculateDistance(userX, userY, d2X, d2Y);
+int distance3 = CalculateDistance(userX, userY, d3X, d3Y);
+int minDistance = min(distance1, min(distance2, distance3));
+int pickupTime = minDistance * 2;
+
+   return pickupTime;
+}
+   
+
+
+int main() {
+   int userX, userY;
+   int d1X, d1Y;
+   int d2X, d2Y;
+   int d3X, d3Y;
+   
+   cin >> userX; 
+   cin >> userY;
+   cin >> d1X;
+   cin >> d1Y;
+   cin >> d2X;
+   cin >> d2Y;
+   cin >> d3X;
+   cin >> d3Y;
+   
+   cout << PickupMinutes(userX, userY, d1X, d1Y, d2X, d2Y, d3X, d3Y) << endl;
+   
+   return 0;
+}
