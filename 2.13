@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   long long phoneNumber;
+   int areaCode, prefixNumber,lineNumber;
+   cin >> phoneNumber;
+   
+   lineNumber = phoneNumber % 10000;
+   phoneNumber = phoneNumber / 10000;
+   prefixNumber = phoneNumber % 1000;
+   phoneNumber = phoneNumber / 1000;
+   areaCode = phoneNumber;
+   cout<< "(" << areaCode << ")" <<" "<<prefixNumber<<"-"<<lineNumber<<endl;
+   
+   
+   return 0;
+}
