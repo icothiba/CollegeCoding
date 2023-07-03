@@ -1,0 +1,20 @@
+Input 2,3
+Output = 4
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum;
+   int userNumSquared;
+   
+   cin >> userNum;
+   
+   userNumSquared = userNum * userNum;
+   
+   cout << userNumSquared << endl;
+
+   return 0;
+}
