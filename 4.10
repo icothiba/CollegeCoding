@@ -1,0 +1,35 @@
+If the input is % 5, then the output is:
+% 
+% % 
+% % % 
+% % % % 
+% % % % % 
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   char triangleChar;
+   int triangleHeight;
+   int row;
+   int col;
+
+   cout << "Enter a character:" << endl;
+   cin >> triangleChar;
+   
+   cout << "Enter triangle height:" << endl;
+   cin >> triangleHeight;
+   cout << endl;
+      
+   
+   for (row = 1; row <= triangleHeight; ++row) {
+      for (col = 1; col <= row; ++col) {
+         cout << triangleChar << " ";
+      }
+      cout << endl;
+   
+   }
+   
+   return 0;
+}
