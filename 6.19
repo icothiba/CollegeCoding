@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+void SwapValues(int& userVal1, int& userVal2, int& userVal3, int& userVal4) {
+    int temp1 = userVal1;
+    int temp2 = userVal2;
+    int temp3 = userVal3;
+    int temp4 = userVal4;
+
+    userVal1 = temp2;
+    userVal2 = temp1;
+    userVal3 = temp4;
+    userVal4 = temp3;
+}
+
+int main() {
+   int val1, val2, val3, val4;
+
+    cin >> val1 >> val2 >> val3 >> val4;
+
+    SwapValues(val1, val2, val3, val4);
+
+    cout << val1 << " " << val2 << " " << val3 << " " << val4 << endl;
+
+   return 0;
+}
