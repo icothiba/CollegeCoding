@@ -1,0 +1,49 @@
+If the input is:
+
+5 10 4 39 12 2
+
+the output is:
+
+39,12,10,4,2,
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void SortVector(vector<int>& myVec) {
+    int n = myVec.size();
+    bool swapped = true;
+    while (swapped) {
+        swapped = false;
+        for (int i = 1; i < n; i++) {
+            if (myVec[i - 1] < myVec[i]) {
+                swap(myVec[i - 1], myVec[i]);
+                swapped = true;
+            }
+        }
+        n--;
+    }
+}
+
+int main() {
+int count;
+    cin >> count;
+
+    vector<int> myVec(count);
+    for (int i = 0; i < count; i++) {
+        cin >> myVec[i];
+    }
+
+    SortVector(myVec);
+
+    for (int i = 0; i < count; i++) {
+        cout << myVec[i];
+        if (i != count - 1) {
+            cout << ",";
+        }
+    }
+    cout << "," << endl;
+
+   return 0;
+}
