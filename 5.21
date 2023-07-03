@@ -1,0 +1,38 @@
+If the input is:
+
+5 25 51 0 200 33
+0 50
+
+then the output is:
+
+25,0,33,
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+   int numIntegers, lowerBound, upperBound;
+    cin >> numIntegers;
+
+    vector<int> integers;
+    for (int i = 0; i < numIntegers; i++) {
+        int num;
+        cin >> num;
+        integers.push_back(num);
+    }
+
+    cin >> lowerBound >> upperBound;
+
+    for (int i = 0; i < integers.size(); i++) {
+        if (integers[i] >= lowerBound && integers[i] <= upperBound) {
+            cout << integers[i] << ",";
+        }
+    }
+
+    cout << endl;
+
+   return 0;
+}
