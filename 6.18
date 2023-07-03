@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+
+void CentsToDollarsCents(int cents, int& dollars, int& remainingCents) {
+    dollars = cents / 100;
+    remainingCents = cents % 100;
+}
+
+
+int main() {
+int cents;
+    int dollars, remainingCents;
+
+    cin >> cents;
+
+    CentsToDollarsCents(cents, dollars, remainingCents);
+
+    cout << dollars << " dollars ";
+    
+    cout << remainingCents << " cents";
+    cout << endl;
+
+   return 0;
+}
