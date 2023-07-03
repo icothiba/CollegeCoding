@@ -1,0 +1,36 @@
+If the input is:
+
+4 hello zoo sleep drizzle z
+
+then the output is:
+
+zoo,drizzle,
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+vector<string> userWords;
+unsigned int numWords;
+char ch;
+unsigned int i;
+string word;
+
+   cin >> numWords;
+   for (i = 0; i < numWords; ++i) {
+      cin >> word;
+      userWords.push_back(word);
+   }
+   cin >> ch;
+   
+   for (i = 0; i < userWords.size(); ++i) {
+      if (userWords.at(i).find(ch) != string::npos)
+         cout << userWords.at(i) << ",";
+   }
+   
+   cout << endl;
+
+   return 0;
+}
