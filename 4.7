@@ -1,0 +1,16 @@
+If the input is apples 5 shoes 2 quit 0, then the output is Eating 5 apples a day keeps you happy and healthy. Eating 2 shoes a day keeps you happy and healthy.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+string name;
+int number;
+
+cin >> name >> number;
+while (number != 0)
+{
+   cout << "Eating " << number << " " << name << " a day keeps you happy and healthy." << endl;
+   cin >> name >> number;
+}
