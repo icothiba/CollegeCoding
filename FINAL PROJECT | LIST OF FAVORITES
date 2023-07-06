@@ -1,0 +1,213 @@
+
+//This small program allows the user to view a rating list of songs, and the user can choose amongst a selection of actions relating to the list. i.e., the user can add & delete specified songs. 
+
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Function prototypes
+void readDataFromFile(vector<string>& items, vector<int>& ratings, const string& filename);
+void displayFavorites(const vector<string>& items, const vector<int>& ratings);
+void addItem(vector<string>& items, vector<int>& ratings);
+void deleteItem(vector<string>& items, vector<int>& ratings);
+void updateRating(vector<string>& items, vector<int>& ratings);
+void outputAboveRating(const vector<string>& items, const vector<int>& ratings);
+void saveDataToFile(const vector<string>& items, const vector<int>& ratings, const string& filename);
+
+int main() {
+    vector<string> items;
+    vector<int> ratings;
+    const string filename = "favorites";
+
+    // Read data from file
+    readDataFromFile(items, ratings, filename);
+
+    // Display favorites
+    cout << "FAVORITE SONGS" << endl;
+    displayFavorites(items, ratings);
+
+    // Menu
+    char choice;
+    do {
+        cout << "\nMENU" << endl;
+        cout << "a - Add song" << endl;
+        cout << "d - Delete song" << endl;
+        cout << "u - Update song rating" << endl;
+        cout << "r - Output songs above a rating" << endl;
+        cout << "o - Output list of songs" << endl;
+        cout << "q - Quit and Save" << endl;
+        cout << "Choose an option: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 'a':
+                addItem(items, ratings);
+                break;
+            case 'd':
+                deleteItem(items, ratings);
+                break;
+            case 'u':
+                updateRating(items, ratings);
+                break;
+            case 'r':
+                outputAboveRating(items, ratings);
+                break;
+            case 'o':
+                cout << "\nFAVORITE SONGS" << endl;
+                displayFavorites(items, ratings);
+                break;
+            case 'q':
+                saveDataToFile(items, ratings, filename);
+                cout << "Data saved to file. Exiting..." << endl;
+                break;
+            default:
+                cout << "Invalid option. Please try again." << endl;
+        }
+    } while (choice != 'q');
+
+    return 0;
+}
+
+// Read data from file into vectors
+void readDataFromFile(vector<string>& items, vector<int>& ratings, const string& filename) {
+    ifstream inputFile(filename);
+    if (inputFile.is_open()) {
+        int rating;
+        string item;
+
+        while (inputFile >> rating && getline(inputFile >> ws, item)) {
+            items.push_back(item);
+            ratings.push_back(rating);
+        }
+
+        inputFile.close();
+        cout << "Reading data from " << filename << "..." << endl;
+    } else {
+        cout << "Error opening file: " << filename << endl;
+    }
+}
+
+// Display favorites
+void displayFavorites(const vector<string>& items, const vector<int>& ratings) {
+    for (int i = 0; i < items.size(); i++) {
+        cout << "Song " << (i + 1) << " -- " << items[i] << " (" << ratings[i] << ")" << endl;
+    }
+}
+
+// Add an item
+void addItem(vector<string>& items, vector<int>& ratings) {
+    string newItem;
+    int rating;
+
+    cout << "Enter the title of a favorite song (or 0 to cancel): ";
+    cin.ignore();
+    getline(cin, newItem);
+
+    if (newItem == "0") {
+        return;
+   }
+
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i] == newItem) {
+            cout << "That song is already in the list." << endl;
+            return;
+        }
+    }
+
+    cout << "Enter the rating (1, 2, or 3) for \"" << newItem << "\": ";
+    cin >> rating;
+
+    if (rating < 1 || rating > 3) {
+        cout << "Invalid rating. Rating must be 1, 2, or 3." << endl;
+        return;
+    }
+
+    items.push_back(newItem);
+    ratings.push_back(rating);
+
+    cout << "Song \"" << newItem << "\" with rating " << rating << " added to the list." << endl;
+}
+
+// Delete an item
+void deleteItem(vector<string>& items, vector<int>& ratings) {
+    int itemNumber;
+
+    cout << "Enter the song number to delete (or 0 to cancel): ";
+    cin >> itemNumber;
+
+    if (itemNumber == 0) {
+        return;
+    }
+
+    if (itemNumber < 1 || itemNumber > items.size()) {
+        cout << "Invalid song number." << endl;
+        return;
+    }
+
+    items.erase(items.begin() + itemNumber - 1);
+    ratings.erase(ratings.begin() + itemNumber - 1);
+
+    cout << "Song " << itemNumber << " deleted from the list." << endl;
+}
+
+// Update item rating
+void updateRating(vector<string>& items, vector<int>& ratings) {
+    int itemNumber, newRating;
+
+    cout << "Enter the song number to change: ";
+    cin >> itemNumber;
+
+    if (itemNumber < 1 || itemNumber > items.size()) {
+        cout << "Invalid song number." << endl;
+        return;
+    }
+
+    cout << "Enter the new rating: ";
+    cin >> newRating;
+
+    if (newRating < 1 || newRating > 3) {
+        cout << "Invalid rating. Rating must be 1, 2, or 3." << endl;
+        return;
+    }
+
+    ratings[itemNumber - 1] = newRating;
+
+    cout << "Rating for song " << itemNumber << " updated to " << newRating << "." << endl;
+}
+
+// Output items above a rating
+void outputAboveRating(const vector<string>& items, const vector<int>& ratings) {
+    int rating;
+
+    cout << "Enter a rating: ";
+    cin >> rating;
+
+    if (rating < 1 || rating > 3) {
+        cout << "Invalid rating. Rating must be 1, 2, or 3." << endl;
+        return;
+    }
+
+    cout << "ABOVE " << rating << endl;
+    for (int i = 0; i < items.size(); i++) {
+        if (ratings[i] > rating) {
+            cout << items[i] << " (" << ratings[i] << ")" << endl;
+        }
+    }
+}
+
+// Save data to file
+void saveDataToFile(const vector<string>& items, const vector<int>& ratings, const string& filename) {
+    ofstream outputFile(filename);
+    if (outputFile.is_open()) {
+        for (int i = 0; i < items.size(); i++) {
+            outputFile << ratings[i] << items[i] << endl;
+        }
+        outputFile.close();
+    } else {
+        cout << "Error saving data to file: " << filename << endl;
+    }
+}
